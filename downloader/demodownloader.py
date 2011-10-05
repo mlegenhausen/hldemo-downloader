@@ -75,6 +75,10 @@ def determine_files(ftp, new_demos, changed_demos, maps, days, line):
         return
     
     match = REMOTE_PATTERN.match(filename)
+    if not match:
+        logging.warning("%s seems to be a demo but has not matched the REMOTE_PATTERN." % filename)
+        return
+    
     if not match.group(6) in maps:
         return
 
